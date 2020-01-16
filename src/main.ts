@@ -7,6 +7,8 @@ async function run() {
     // Configuration parameters
     const token = core.getInput('repo-token', { required: true });
     const configPath = core.getInput('configuration-path', { required: true });
+    const notBefore = Date.parse(core.getInput('not-before', { required: false }));
+
 
     const issue_number = getIssueNumber();
     const issue_body = getIssueBody();
@@ -19,6 +21,16 @@ async function run() {
     // A client to load data from GitHub
     const client = new github.GitHub(token);
     client.issues.removeLabels
+    const iss = client.issues.get({
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      issue_number: issue_number,
+    });
+
+    const ca = (await iss).data.created_at
+
+    console.log(`created at: ${ca}`)
+    console.log(`created at parsed: ${Date.parse(ca)}`)
     // Load the existing labels the issue has
     const labels = getLabels(client, issue_number)
 
