@@ -32,7 +32,7 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-    - uses: github/issue-labeler@v2.0
+    - uses: github/issue-labeler@v2.5 #May not be the latest version
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labeler.yml
@@ -71,7 +71,7 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-    - uses: github/issue-labeler@v2.0
+    - uses: github/issue-labeler@v2.5 #May not be the latest version
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labeler.yml
@@ -95,7 +95,7 @@ The labeler action is also available for pull requests. Make sure the workflow i
 
 ```
 on:
-  pull_requests:
+  pull_request:
     types: [opened, edited]
 ```
 
@@ -113,7 +113,7 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-    - uses: github/issue-labeler@v2.0
+    - uses: github/issue-labeler@v2.5 #May not be the latest version
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: .github/labeler.yml
